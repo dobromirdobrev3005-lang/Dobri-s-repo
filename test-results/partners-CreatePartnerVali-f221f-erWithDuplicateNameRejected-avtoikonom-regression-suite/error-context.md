@@ -26,98 +26,114 @@ Received: true
     - generic [ref=e4]:
       - img "navigation-logo" [ref=e6]
       - generic [ref=e7]:
-        - img "menu-item-image" [ref=e9] [cursor=pointer]
-        - img "menu-item-image" [ref=e11] [cursor=pointer]
-        - img "menu-item-image" [ref=e13] [cursor=pointer]
-        - img "menu-item-image" [ref=e15] [cursor=pointer]
-        - img "menu-item-image" [ref=e18] [cursor=pointer]
-        - img "menu-item-image" [ref=e20] [cursor=pointer]
-        - img "menu-item-image" [ref=e22] [cursor=pointer]
-        - img "menu-item-image" [ref=e24] [cursor=pointer]
-        - img "menu-item-image" [ref=e26] [cursor=pointer]
-        - img "menu-item-image" [ref=e28] [cursor=pointer]
-      - img "menu-item-image" [ref=e31] [cursor=pointer]
-  - generic [ref=e32]:
-    - generic [ref=e33]:
-      - generic [ref=e34]: Partners
-      - generic [ref=e36]:
-        - img "notification-btn" [ref=e40] [cursor=pointer]
-        - generic [ref=e41] [cursor=pointer]:
-          - img "avatar" [ref=e42]
-          - generic [ref=e43]:
-            - generic [ref=e44]: test_qa_ex@example.com
-            - generic [ref=e45]: region admin
-          - img "expand-collapse-btn" [ref=e46]
-    - generic [ref=e47]:
-      - generic [ref=e48]:
-        - generic [ref=e49]:
-          - img "search-icon" [ref=e50] [cursor=pointer]
-          - searchbox "Search by partners..." [ref=e51]
-        - button "New partner" [ref=e54] [cursor=pointer]
-      - generic [ref=e58]:
-        - generic [ref=e59]: Show 1-10 from 1365 results
-        - generic [ref=e65]:
-          - table [ref=e67]:
-            - rowgroup [ref=e77]:
-              - row [ref=e78]:
-                - columnheader "NAME" [ref=e79]
-                - columnheader "ADDRESS" [ref=e82]
-                - columnheader "TELEPHONE" [ref=e85]
-                - columnheader "CONTACT PERSON" [ref=e88]
-                - columnheader "SERVICES" [ref=e91]
-                - columnheader "SUBSCRIPTION PLAN" [ref=e94]
-                - columnheader [ref=e97]
-                - columnheader [ref=e98]
-          - table [ref=e100]:
-            - rowgroup [ref=e109]:
-              - row [ref=e110] [cursor=pointer]:
-                - cell "car QA E2E Partner 1787414151943-k1iiu" [ref=e111]:
-                  - generic [ref=e113]:
-                    - img "car" [ref=e115]
-                    - generic [ref=e116]:
-                      - generic [ref=e117]: QA E2E Partner 1787414151943-k1iiu
-                      - radiogroup [ref=e118]:
-                        - listitem [ref=e119]:
-                          - radio [checked] [ref=e120]:
-                            - img "star" [ref=e122]
-                            - img "star" [ref=e126]
-                        - listitem [ref=e129]:
-                          - radio [checked] [ref=e130]:
-                            - img "star" [ref=e132]
-                            - img "star" [ref=e136]
-                        - listitem [ref=e139]:
-                          - radio [checked] [ref=e140]:
-                            - img "star" [ref=e142]
-                            - img "star" [ref=e146]
-                        - listitem [ref=e149]:
-                          - radio [checked] [ref=e150]:
-                            - img "star" [ref=e152]
-                            - img "star" [ref=e156]
-                        - listitem [ref=e159]:
-                          - radio [checked] [ref=e160]:
-                            - img "star" [ref=e162]
-                            - img "star" [ref=e166]
-                - cell "Sofia, Bulgaria" [ref=e169]
-                - cell "+359889559604" [ref=e171]
-                - cell "QA Contact QA E2E Partner 1787414151943-k1iiu" [ref=e173]
-                - cell "Смяна на масло" [ref=e175]
-                - cell "AUTOMATION SUBSCRIPTION TIER 65730" [ref=e179]
-                - cell [ref=e183]:
-                  - generic [ref=e185]:
+        - generic [ref=e8] [cursor=pointer]:
+          - img "menu-item-image" [ref=e9]
+          - generic [ref=e10]: Dashboard
+        - generic [ref=e11] [cursor=pointer]:
+          - img "menu-item-image" [ref=e12]
+          - generic [ref=e13]: Requests
+        - generic [ref=e14] [cursor=pointer]:
+          - img "menu-item-image" [ref=e15]
+          - generic [ref=e16]: Users
+        - generic [ref=e17] [cursor=pointer]:
+          - img "menu-item-image" [ref=e18]
+          - generic [ref=e19]: Vehicles
+        - generic [ref=e20] [cursor=pointer]:
+          - img "menu-item-image" [ref=e22]
+          - generic [ref=e23]: Partners
+        - generic [ref=e24] [cursor=pointer]:
+          - img "menu-item-image" [ref=e25]
+          - generic [ref=e26]: Drivers
+        - generic [ref=e27] [cursor=pointer]:
+          - img "menu-item-image" [ref=e28]
+          - generic [ref=e29]: Services
+        - generic [ref=e30] [cursor=pointer]:
+          - img "menu-item-image" [ref=e31]
+          - generic [ref=e32]: Reminders
+        - generic [ref=e33] [cursor=pointer]:
+          - img "menu-item-image" [ref=e34]
+          - generic [ref=e35]: Promotions
+        - generic [ref=e36] [cursor=pointer]:
+          - img "menu-item-image" [ref=e37]
+          - generic [ref=e38]: Trainings
+      - generic [ref=e40] [cursor=pointer]:
+        - img "menu-item-image" [ref=e41]
+        - generic [ref=e42]: Logout
+  - generic [ref=e43]:
+    - generic [ref=e44]:
+      - generic [ref=e45]: Partners
+      - generic [ref=e47]:
+        - img "notification-btn" [ref=e51] [cursor=pointer]
+        - generic [ref=e52] [cursor=pointer]:
+          - img "avatar" [ref=e53]
+          - generic [ref=e54]:
+            - generic [ref=e55]: test_qa_ex@example.com
+            - generic [ref=e56]: region admin
+          - img "expand-collapse-btn" [ref=e57]
+    - generic [ref=e58]:
+      - generic [ref=e59]:
+        - generic [ref=e60]:
+          - img "search-icon" [ref=e61] [cursor=pointer]
+          - searchbox "Search by partners..." [ref=e62]
+        - button "New partner" [ref=e65] [cursor=pointer]
+      - generic [ref=e69]:
+        - generic [ref=e70]: Show 1-10 from 1416 results
+        - generic [ref=e76]:
+          - table [ref=e78]:
+            - rowgroup [ref=e88]:
+              - row [ref=e89]:
+                - columnheader "NAME" [ref=e90]
+                - columnheader "ADDRESS" [ref=e93]
+                - columnheader "TELEPHONE" [ref=e96]
+                - columnheader "CONTACT PERSON" [ref=e99]
+                - columnheader "SERVICES" [ref=e102]
+                - columnheader "SUBSCRIPTION PLAN" [ref=e105]
+                - columnheader [ref=e108]
+                - columnheader [ref=e109]
+          - table [ref=e111]:
+            - rowgroup [ref=e120]:
+              - row [ref=e121] [cursor=pointer]:
+                - cell "QA E2E Partner 1787418418709-n0ri9" [ref=e122]:
+                  - generic [ref=e126]:
+                    - generic [ref=e127]: QA E2E Partner 1787418418709-n0ri9
+                    - radiogroup [ref=e128]:
+                      - listitem [ref=e129]:
+                        - radio [checked] [ref=e130]:
+                          - img "star" [ref=e132]
+                          - img "star" [ref=e136]
+                      - listitem [ref=e139]:
+                        - radio [checked] [ref=e140]:
+                          - img "star" [ref=e142]
+                          - img "star" [ref=e146]
+                      - listitem [ref=e149]:
+                        - radio [checked] [ref=e150]:
+                          - img "star" [ref=e152]
+                          - img "star" [ref=e156]
+                      - listitem [ref=e159]:
+                        - radio [checked] [ref=e160]:
+                          - img "star" [ref=e162]
+                          - img "star" [ref=e166]
+                      - listitem [ref=e169]:
+                        - radio [checked] [ref=e170]:
+                          - img "star" [ref=e172]
+                          - img "star" [ref=e176]
+                - cell "Sofia, Bulgaria" [ref=e179]
+                - cell "+359884352529" [ref=e181]
+                - cell "QA Contact QA E2E Partner 1787418418709-n0ri9" [ref=e183]
+                - cell "Смяна на масло" [ref=e185]
+                - cell "AUTOMATION SUBSCRIPTION TIER 65730" [ref=e189]
+                - cell [ref=e193]:
+                  - generic [ref=e195]:
                     - menu:
-                      - menuitem [ref=e186]:
-                        - img "dots-icon" [ref=e188]
-              - row [ref=e189] [cursor=pointer]:
-                - cell "car QA E2E Partner 1787414151943-k1iiu" [ref=e190]:
-                  - generic [ref=e192]:
-                    - img "car" [ref=e194]
-                    - generic [ref=e195]:
-                      - generic [ref=e196]: QA E2E Partner 1787414151943-k1iiu
-                      - radiogroup [ref=e197]:
-                        - listitem [ref=e198]:
-                          - radio [checked] [ref=e199]:
-                            - img "star" [ref=e201]
-                            - img "star" [ref=e205]
+                      - menuitem [ref=e196]:
+                        - img "dots-icon" [ref=e198]
+              - row [ref=e199] [cursor=pointer]:
+                - cell "car QA E2E Partner 1787418418709-n0ri9" [ref=e200]:
+                  - generic [ref=e202]:
+                    - img "car" [ref=e204]
+                    - generic [ref=e205]:
+                      - generic [ref=e206]: QA E2E Partner 1787418418709-n0ri9
+                      - radiogroup [ref=e207]:
                         - listitem [ref=e208]:
                           - radio [checked] [ref=e209]:
                             - img "star" [ref=e211]
@@ -134,27 +150,27 @@ Received: true
                           - radio [checked] [ref=e239]:
                             - img "star" [ref=e241]
                             - img "star" [ref=e245]
-                - cell "Sofia, Bulgaria" [ref=e248]
-                - cell "+359889559604" [ref=e250]
-                - cell "QA Contact QA E2E Partner 1787414151943-k1iiu" [ref=e252]
-                - cell "Смяна на масло" [ref=e254]
-                - cell "AUTOMATION SUBSCRIPTION TIER 65730" [ref=e258]
-                - cell [ref=e262]:
-                  - generic [ref=e264]:
+                        - listitem [ref=e248]:
+                          - radio [checked] [ref=e249]:
+                            - img "star" [ref=e251]
+                            - img "star" [ref=e255]
+                - cell "Sofia, Bulgaria" [ref=e258]
+                - cell "+359884352529" [ref=e260]
+                - cell "QA Contact QA E2E Partner 1787418418709-n0ri9" [ref=e262]
+                - cell "Смяна на масло" [ref=e264]
+                - cell "AUTOMATION SUBSCRIPTION TIER 65730" [ref=e268]
+                - cell [ref=e272]:
+                  - generic [ref=e274]:
                     - menu:
-                      - menuitem [ref=e265]:
-                        - img "dots-icon" [ref=e267]
-              - row [ref=e268] [cursor=pointer]:
-                - cell "car QA E2E Partner 1787414132617-qb8x2" [ref=e269]:
-                  - generic [ref=e271]:
-                    - img "car" [ref=e273]
-                    - generic [ref=e274]:
-                      - generic [ref=e275]: QA E2E Partner 1787414132617-qb8x2
-                      - radiogroup [ref=e276]:
-                        - listitem [ref=e277]:
-                          - radio [checked] [ref=e278]:
-                            - img "star" [ref=e280]
-                            - img "star" [ref=e284]
+                      - menuitem [ref=e275]:
+                        - img "dots-icon" [ref=e277]
+              - row [ref=e278] [cursor=pointer]:
+                - cell "car QA E2E Partner 1787418383011-222vs" [ref=e279]:
+                  - generic [ref=e281]:
+                    - img "car" [ref=e283]
+                    - generic [ref=e284]:
+                      - generic [ref=e285]: QA E2E Partner 1787418383011-222vs
+                      - radiogroup [ref=e286]:
                         - listitem [ref=e287]:
                           - radio [checked] [ref=e288]:
                             - img "star" [ref=e290]
@@ -171,64 +187,64 @@ Received: true
                           - radio [checked] [ref=e318]:
                             - img "star" [ref=e320]
                             - img "star" [ref=e324]
-                - cell "Sofia, Bulgaria" [ref=e327]
-                - cell "+359889012542" [ref=e329]
-                - cell "QA Contact QA E2E Partner 1787414132617-qb8x2" [ref=e331]
-                - cell "Смяна на масло" [ref=e333]
-                - cell "AUTOMATION SUBSCRIPTION TIER 65730" [ref=e337]
-                - cell [ref=e341]:
-                  - generic [ref=e343]:
+                        - listitem [ref=e327]:
+                          - radio [checked] [ref=e328]:
+                            - img "star" [ref=e330]
+                            - img "star" [ref=e334]
+                - cell "Sofia, Bulgaria" [ref=e337]
+                - cell "+359887570406" [ref=e339]
+                - cell "QA Contact QA E2E Partner 1787418383011-222vs" [ref=e341]
+                - cell "Смяна на масло" [ref=e343]
+                - cell "AUTOMATION SUBSCRIPTION TIER 65730" [ref=e347]
+                - cell [ref=e351]:
+                  - generic [ref=e353]:
                     - menu:
-                      - menuitem [ref=e344]:
-                        - img "dots-icon" [ref=e346]
-              - row [ref=e347] [cursor=pointer]:
-                - cell "car QA E2E Partner 1787413158669-udtzs" [ref=e348]:
-                  - generic [ref=e350]:
-                    - img "car" [ref=e352]
-                    - generic [ref=e353]:
-                      - generic [ref=e354]: QA E2E Partner 1787413158669-udtzs
-                      - radiogroup [ref=e355]:
-                        - listitem [ref=e356]:
-                          - radio [checked] [ref=e357]:
-                            - img "star" [ref=e359]
-                            - img "star" [ref=e363]
+                      - menuitem [ref=e354]:
+                        - img "dots-icon" [ref=e356]
+              - row [ref=e357] [cursor=pointer]:
+                - cell "car QA E2E Partner 1787418383466-xdu2w EDITED" [ref=e358]:
+                  - generic [ref=e360]:
+                    - img "car" [ref=e362]
+                    - generic [ref=e363]:
+                      - generic [ref=e364]: QA E2E Partner 1787418383466-xdu2w EDITED
+                      - radiogroup [ref=e365]:
                         - listitem [ref=e366]:
-                          - radio [checked] [ref=e367]:
+                          - radio [ref=e367]:
                             - img "star" [ref=e369]
                             - img "star" [ref=e373]
                         - listitem [ref=e376]:
-                          - radio [checked] [ref=e377]:
+                          - radio [ref=e377]:
                             - img "star" [ref=e379]
                             - img "star" [ref=e383]
                         - listitem [ref=e386]:
-                          - radio [checked] [ref=e387]:
+                          - radio [ref=e387]:
                             - img "star" [ref=e389]
                             - img "star" [ref=e393]
                         - listitem [ref=e396]:
-                          - radio [checked] [ref=e397]:
+                          - radio [ref=e397]:
                             - img "star" [ref=e399]
                             - img "star" [ref=e403]
-                - cell "Sofia, Bulgaria" [ref=e406]
-                - cell "+359886930212" [ref=e408]
-                - cell "QA Contact QA E2E Partner 1787413158669-udtzs" [ref=e410]
-                - cell "Смяна на масло" [ref=e412]
-                - cell "AUTOMATION SUBSCRIPTION TIER 65730" [ref=e416]
-                - cell [ref=e420]:
-                  - generic [ref=e422]:
+                        - listitem [ref=e406]:
+                          - radio [ref=e407]:
+                            - img "star" [ref=e409]
+                            - img "star" [ref=e413]
+                - cell "Plovdiv, Bulgaria" [ref=e416]
+                - cell "+359894507693" [ref=e418]
+                - cell "QA Contact EDITED 1787418383466-w7m8z" [ref=e420]
+                - cell "Смяна на гуми" [ref=e422]
+                - cell "AUTOMATION SUBSCRIPTION TIER 65730" [ref=e426]
+                - cell [ref=e430]:
+                  - generic [ref=e432]:
                     - menu:
-                      - menuitem [ref=e423]:
-                        - img "dots-icon" [ref=e425]
-              - row [ref=e426] [cursor=pointer]:
-                - cell "car QA E2E Partner 1787413163457-jl9jp" [ref=e427]:
-                  - generic [ref=e429]:
-                    - img "car" [ref=e431]
-                    - generic [ref=e432]:
-                      - generic [ref=e433]: QA E2E Partner 1787413163457-jl9jp
-                      - radiogroup [ref=e434]:
-                        - listitem [ref=e435]:
-                          - radio [checked] [ref=e436]:
-                            - img "star" [ref=e438]
-                            - img "star" [ref=e442]
+                      - menuitem [ref=e433]:
+                        - img "dots-icon" [ref=e435]
+              - row [ref=e436] [cursor=pointer]:
+                - cell "car QA E2E Partner 1787417975597-6djls" [ref=e437]:
+                  - generic [ref=e439]:
+                    - img "car" [ref=e441]
+                    - generic [ref=e442]:
+                      - generic [ref=e443]: QA E2E Partner 1787417975597-6djls
+                      - radiogroup [ref=e444]:
                         - listitem [ref=e445]:
                           - radio [checked] [ref=e446]:
                             - img "star" [ref=e448]
@@ -245,101 +261,101 @@ Received: true
                           - radio [checked] [ref=e476]:
                             - img "star" [ref=e478]
                             - img "star" [ref=e482]
-                - cell "Sofia, Bulgaria" [ref=e485]
-                - cell "+359157" [ref=e487]
-                - cell "QA Contact QA E2E Partner 1787413163457-jl9jp" [ref=e489]
-                - cell "Смяна на масло" [ref=e491]
-                - cell "AUTOMATION SUBSCRIPTION TIER 65730" [ref=e495]
-                - cell [ref=e499]:
-                  - generic [ref=e501]:
+                        - listitem [ref=e485]:
+                          - radio [checked] [ref=e486]:
+                            - img "star" [ref=e488]
+                            - img "star" [ref=e492]
+                - cell "Sofia, Bulgaria" [ref=e495]
+                - cell "+359197" [ref=e497]
+                - cell "QA Contact QA E2E Partner 1787417975597-6djls" [ref=e499]
+                - cell "Смяна на масло" [ref=e501]
+                - cell "AUTOMATION SUBSCRIPTION TIER 65730" [ref=e505]
+                - cell [ref=e509]:
+                  - generic [ref=e511]:
                     - menu:
-                      - menuitem [ref=e502]:
-                        - img "dots-icon" [ref=e504]
-              - row [ref=e505] [cursor=pointer]:
-                - cell "car QA E2E Partner 1787413158669-udtzs" [ref=e506]:
-                  - generic [ref=e508]:
-                    - img "car" [ref=e510]
-                    - generic [ref=e511]:
-                      - generic [ref=e512]: QA E2E Partner 1787413158669-udtzs
-                      - radiogroup [ref=e513]:
-                        - listitem [ref=e514]:
-                          - radio [checked] [ref=e515]:
-                            - img "star" [ref=e517]
-                            - img "star" [ref=e521]
+                      - menuitem [ref=e512]:
+                        - img "dots-icon" [ref=e514]
+              - row [ref=e515] [cursor=pointer]:
+                - cell "car QA E2E Partner 1787417948627-dw3gz EDITED" [ref=e516]:
+                  - generic [ref=e518]:
+                    - img "car" [ref=e520]
+                    - generic [ref=e521]:
+                      - generic [ref=e522]: QA E2E Partner 1787417948627-dw3gz EDITED
+                      - radiogroup [ref=e523]:
                         - listitem [ref=e524]:
-                          - radio [checked] [ref=e525]:
+                          - radio [ref=e525]:
                             - img "star" [ref=e527]
                             - img "star" [ref=e531]
                         - listitem [ref=e534]:
-                          - radio [checked] [ref=e535]:
+                          - radio [ref=e535]:
                             - img "star" [ref=e537]
                             - img "star" [ref=e541]
                         - listitem [ref=e544]:
-                          - radio [checked] [ref=e545]:
+                          - radio [ref=e545]:
                             - img "star" [ref=e547]
                             - img "star" [ref=e551]
                         - listitem [ref=e554]:
-                          - radio [checked] [ref=e555]:
+                          - radio [ref=e555]:
                             - img "star" [ref=e557]
                             - img "star" [ref=e561]
-                - cell "Sofia, Bulgaria" [ref=e564]
-                - cell "+359886930212" [ref=e566]
-                - cell "QA Contact QA E2E Partner 1787413158669-udtzs" [ref=e568]
-                - cell "Смяна на масло" [ref=e570]
-                - cell "AUTOMATION SUBSCRIPTION TIER 65730" [ref=e574]
-                - cell [ref=e578]:
-                  - generic [ref=e580]:
+                        - listitem [ref=e564]:
+                          - radio [ref=e565]:
+                            - img "star" [ref=e567]
+                            - img "star" [ref=e571]
+                - cell "Plovdiv, Bulgaria" [ref=e574]
+                - cell "+359893787552" [ref=e576]
+                - cell "QA Contact EDITED 1787417948628-ytv67" [ref=e578]
+                - cell "Смяна на гуми" [ref=e580]
+                - cell "AUTOMATION SUBSCRIPTION TIER 65730" [ref=e584]
+                - cell [ref=e588]:
+                  - generic [ref=e590]:
                     - menu:
-                      - menuitem [ref=e581]:
-                        - img "dots-icon" [ref=e583]
-              - row [ref=e584] [cursor=pointer]:
-                - cell "car QA E2E Partner 1787413130946-rcth0 EDITED" [ref=e585]:
-                  - generic [ref=e587]:
-                    - img "car" [ref=e589]
-                    - generic [ref=e590]:
-                      - generic [ref=e591]: QA E2E Partner 1787413130946-rcth0 EDITED
-                      - radiogroup [ref=e592]:
-                        - listitem [ref=e593]:
-                          - radio [ref=e594]:
-                            - img "star" [ref=e596]
-                            - img "star" [ref=e600]
+                      - menuitem [ref=e591]:
+                        - img "dots-icon" [ref=e593]
+              - row [ref=e594] [cursor=pointer]:
+                - cell "car QA E2E Partner 1787417932052-xgo12" [ref=e595]:
+                  - generic [ref=e597]:
+                    - img "car" [ref=e599]
+                    - generic [ref=e600]:
+                      - generic [ref=e601]: QA E2E Partner 1787417932052-xgo12
+                      - radiogroup [ref=e602]:
                         - listitem [ref=e603]:
-                          - radio [ref=e604]:
+                          - radio [checked] [ref=e604]:
                             - img "star" [ref=e606]
                             - img "star" [ref=e610]
                         - listitem [ref=e613]:
-                          - radio [ref=e614]:
+                          - radio [checked] [ref=e614]:
                             - img "star" [ref=e616]
                             - img "star" [ref=e620]
                         - listitem [ref=e623]:
-                          - radio [ref=e624]:
+                          - radio [checked] [ref=e624]:
                             - img "star" [ref=e626]
                             - img "star" [ref=e630]
                         - listitem [ref=e633]:
-                          - radio [ref=e634]:
+                          - radio [checked] [ref=e634]:
                             - img "star" [ref=e636]
                             - img "star" [ref=e640]
-                - cell "Plovdiv, Bulgaria" [ref=e643]
-                - cell "+359893591993" [ref=e645]
-                - cell "QA Contact EDITED 1787413130946-3ssvn" [ref=e647]
-                - cell "Смяна на гуми" [ref=e649]
-                - cell "AUTOMATION SUBSCRIPTION TIER 65730" [ref=e653]
-                - cell [ref=e657]:
-                  - generic [ref=e659]:
+                        - listitem [ref=e643]:
+                          - radio [checked] [ref=e644]:
+                            - img "star" [ref=e646]
+                            - img "star" [ref=e650]
+                - cell "Sofia, Bulgaria" [ref=e653]
+                - cell "+359889829720" [ref=e655]
+                - cell "QA Contact QA E2E Partner 1787417932052-xgo12" [ref=e657]
+                - cell "Смяна на масло" [ref=e659]
+                - cell "AUTOMATION SUBSCRIPTION TIER 65730" [ref=e663]
+                - cell [ref=e667]:
+                  - generic [ref=e669]:
                     - menu:
-                      - menuitem [ref=e660]:
-                        - img "dots-icon" [ref=e662]
-              - row [ref=e663] [cursor=pointer]:
-                - cell "car QA E2E Partner 1787412529862-sbuiz" [ref=e664]:
-                  - generic [ref=e666]:
-                    - img "car" [ref=e668]
-                    - generic [ref=e669]:
-                      - generic [ref=e670]: QA E2E Partner 1787412529862-sbuiz
-                      - radiogroup [ref=e671]:
-                        - listitem [ref=e672]:
-                          - radio [checked] [ref=e673]:
-                            - img "star" [ref=e675]
-                            - img "star" [ref=e679]
+                      - menuitem [ref=e670]:
+                        - img "dots-icon" [ref=e672]
+              - row [ref=e673] [cursor=pointer]:
+                - cell "car QA E2E Partner 1787417685932-pve6f" [ref=e674]:
+                  - generic [ref=e676]:
+                    - img "car" [ref=e678]
+                    - generic [ref=e679]:
+                      - generic [ref=e680]: QA E2E Partner 1787417685932-pve6f
+                      - radiogroup [ref=e681]:
                         - listitem [ref=e682]:
                           - radio [checked] [ref=e683]:
                             - img "star" [ref=e685]
@@ -356,27 +372,27 @@ Received: true
                           - radio [checked] [ref=e713]:
                             - img "star" [ref=e715]
                             - img "star" [ref=e719]
-                - cell "Sofia, Bulgaria" [ref=e722]
-                - cell "+359162" [ref=e724]
-                - cell "QA Contact QA E2E Partner 1787412529862-sbuiz" [ref=e726]
-                - cell "Смяна на масло" [ref=e728]
-                - cell "AUTOMATION SUBSCRIPTION TIER 65730" [ref=e732]
-                - cell [ref=e736]:
-                  - generic [ref=e738]:
+                        - listitem [ref=e722]:
+                          - radio [checked] [ref=e723]:
+                            - img "star" [ref=e725]
+                            - img "star" [ref=e729]
+                - cell "Sofia, Bulgaria" [ref=e732]
+                - cell "+359132" [ref=e734]
+                - cell "QA Contact QA E2E Partner 1787417685932-pve6f" [ref=e736]
+                - cell "Смяна на масло" [ref=e738]
+                - cell "AUTOMATION SUBSCRIPTION TIER 65730" [ref=e742]
+                - cell [ref=e746]:
+                  - generic [ref=e748]:
                     - menu:
-                      - menuitem [ref=e739]:
-                        - img "dots-icon" [ref=e741]
-              - row [ref=e742] [cursor=pointer]:
-                - cell "car QA E2E Partner 1787412515374-zjfee" [ref=e743]:
-                  - generic [ref=e745]:
-                    - img "car" [ref=e747]
-                    - generic [ref=e748]:
-                      - generic [ref=e749]: QA E2E Partner 1787412515374-zjfee
-                      - radiogroup [ref=e750]:
-                        - listitem [ref=e751]:
-                          - radio [checked] [ref=e752]:
-                            - img "star" [ref=e754]
-                            - img "star" [ref=e758]
+                      - menuitem [ref=e749]:
+                        - img "dots-icon" [ref=e751]
+              - row [ref=e752] [cursor=pointer]:
+                - cell "car QA E2E Partner 1787417679652-t31dh" [ref=e753]:
+                  - generic [ref=e755]:
+                    - img "car" [ref=e757]
+                    - generic [ref=e758]:
+                      - generic [ref=e759]: QA E2E Partner 1787417679652-t31dh
+                      - radiogroup [ref=e760]:
                         - listitem [ref=e761]:
                           - radio [checked] [ref=e762]:
                             - img "star" [ref=e764]
@@ -393,27 +409,27 @@ Received: true
                           - radio [checked] [ref=e792]:
                             - img "star" [ref=e794]
                             - img "star" [ref=e798]
-                - cell "Sofia, Bulgaria" [ref=e801]
-                - cell "+359884358054" [ref=e803]
-                - cell "QA Contact QA E2E Partner 1787412515374-zjfee" [ref=e805]
-                - cell "Смяна на масло" [ref=e807]
-                - cell "AUTOMATION SUBSCRIPTION TIER 65730" [ref=e811]
-                - cell [ref=e815]:
-                  - generic [ref=e817]:
+                        - listitem [ref=e801]:
+                          - radio [checked] [ref=e802]:
+                            - img "star" [ref=e804]
+                            - img "star" [ref=e808]
+                - cell "Sofia, Bulgaria" [ref=e811]
+                - cell "+359887163604" [ref=e813]
+                - cell "QA Contact QA E2E Partner 1787417679652-t31dh" [ref=e815]
+                - cell "Смяна на масло" [ref=e817]
+                - cell "AUTOMATION SUBSCRIPTION TIER 65730" [ref=e821]
+                - cell [ref=e825]:
+                  - generic [ref=e827]:
                     - menu:
-                      - menuitem [ref=e818]:
-                        - img "dots-icon" [ref=e820]
-              - row [ref=e821] [cursor=pointer]:
-                - cell "car QA E2E Partner 1787412515374-zjfee" [ref=e822]:
-                  - generic [ref=e824]:
-                    - img "car" [ref=e826]
-                    - generic [ref=e827]:
-                      - generic [ref=e828]: QA E2E Partner 1787412515374-zjfee
-                      - radiogroup [ref=e829]:
-                        - listitem [ref=e830]:
-                          - radio [checked] [ref=e831]:
-                            - img "star" [ref=e833]
-                            - img "star" [ref=e837]
+                      - menuitem [ref=e828]:
+                        - img "dots-icon" [ref=e830]
+              - row [ref=e831] [cursor=pointer]:
+                - cell "car QA E2E Partner 1787417679652-t31dh" [ref=e832]:
+                  - generic [ref=e834]:
+                    - img "car" [ref=e836]
+                    - generic [ref=e837]:
+                      - generic [ref=e838]: QA E2E Partner 1787417679652-t31dh
+                      - radiogroup [ref=e839]:
                         - listitem [ref=e840]:
                           - radio [checked] [ref=e841]:
                             - img "star" [ref=e843]
@@ -430,34 +446,38 @@ Received: true
                           - radio [checked] [ref=e871]:
                             - img "star" [ref=e873]
                             - img "star" [ref=e877]
-                - cell "Sofia, Bulgaria" [ref=e880]
-                - cell "+359884358054" [ref=e882]
-                - cell "QA Contact QA E2E Partner 1787412515374-zjfee" [ref=e884]
-                - cell "Смяна на масло" [ref=e886]
-                - cell "AUTOMATION SUBSCRIPTION TIER 65730" [ref=e890]
-                - cell [ref=e894]:
-                  - generic [ref=e896]:
+                        - listitem [ref=e880]:
+                          - radio [checked] [ref=e881]:
+                            - img "star" [ref=e883]
+                            - img "star" [ref=e887]
+                - cell "Sofia, Bulgaria" [ref=e890]
+                - cell "+359887163604" [ref=e892]
+                - cell "QA Contact QA E2E Partner 1787417679652-t31dh" [ref=e894]
+                - cell "Смяна на масло" [ref=e896]
+                - cell "AUTOMATION SUBSCRIPTION TIER 65730" [ref=e900]
+                - cell [ref=e904]:
+                  - generic [ref=e906]:
                     - menu:
-                      - menuitem [ref=e897]:
-                        - img "dots-icon" [ref=e899]
-        - list [ref=e901]:
-          - listitem "Previous Page" [ref=e902]
-          - listitem "1" [ref=e903] [cursor=pointer]
-          - listitem "2" [ref=e905] [cursor=pointer]
-          - listitem "3" [ref=e907] [cursor=pointer]
-          - listitem "4" [ref=e909] [cursor=pointer]
-          - listitem "5" [ref=e911] [cursor=pointer]
-          - listitem "Next 5 Pages" [ref=e913] [cursor=pointer]:
-            - generic [ref=e915]:
-              - img "double-right" [ref=e916]
-              - generic [ref=e919]: •••
-          - listitem "137" [ref=e920] [cursor=pointer]
-          - listitem "Next Page" [ref=e922] [cursor=pointer]
-          - listitem [ref=e925]:
-            - generic "Page size" [ref=e926] [cursor=pointer]:
-              - generic [ref=e927]:
-                - combobox "Page size" [ref=e929]
-                - generic "10 / items per page" [ref=e930]
+                      - menuitem [ref=e907]:
+                        - img "dots-icon" [ref=e909]
+        - list [ref=e911]:
+          - listitem "Previous Page" [ref=e912]
+          - listitem "1" [ref=e913] [cursor=pointer]
+          - listitem "2" [ref=e915] [cursor=pointer]
+          - listitem "3" [ref=e917] [cursor=pointer]
+          - listitem "4" [ref=e919] [cursor=pointer]
+          - listitem "5" [ref=e921] [cursor=pointer]
+          - listitem "Next 5 Pages" [ref=e923] [cursor=pointer]:
+            - generic [ref=e925]:
+              - img "double-right" [ref=e926]
+              - generic [ref=e929]: •••
+          - listitem "142" [ref=e930] [cursor=pointer]
+          - listitem "Next Page" [ref=e932] [cursor=pointer]
+          - listitem [ref=e935]:
+            - generic "Page size" [ref=e936] [cursor=pointer]:
+              - generic [ref=e937]:
+                - combobox "Page size" [ref=e939]
+                - generic "10 / items per page" [ref=e940]
 ```
 
 # Test source

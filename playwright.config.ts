@@ -6,6 +6,10 @@ import { env, STORAGE_STATE_PATH } from './config/env';
  */
 export default defineConfig({
   testDir: './tests',
+  /* Wipes `allure-results/` before the run starts — see the file's own
+   * comment for why that has to happen here rather than at report-generation
+   * time. */
+  globalSetup: require.resolve('./config/globalSetup'),
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
