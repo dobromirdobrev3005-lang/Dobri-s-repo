@@ -56,4 +56,5 @@ numbers have no minimum length.
 - Different environment setups so that the regression can be executed on all environments.
 - CI pipeline split (smoke on PR, full regression nightly).
 - To be set to run headless when executed in pipeline.
+- Gitignore a lot of things that doesnt need to go in the remote repository.
 
