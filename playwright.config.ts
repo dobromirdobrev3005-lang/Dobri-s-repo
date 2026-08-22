@@ -20,8 +20,17 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  /* `list` gives live console feedback while a run is in progress (locally
+   * and in the CI log); `html` is the artifact a human opens afterwards to
+   * inspect a failure — traces, screenshots and network per step. Never
+   * auto-opens: CI has no browser to open it in, and locally `npm run
+   * report` opens it on demand instead of surprising you every run. */
+  reporter: [['list'], ['html', { open: 'never' }]],
+  /* Slow down the suite's assertions past the 5s default before failing a
+   * step, and the default click/fill timeout, to match a genuinely slow
+   * environment (this dialog loads a Google Map and a subscription-tier
+   * list) instead of papering over it with longer test-level timeouts only. */
+  expect: { timeout: 10_000 },
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/login')`. Falls
@@ -30,8 +39,14 @@ export default defineConfig({
      * "", which `??` would treat as a real, if useless, value). */
     baseURL: process.env.BASE_URL || 'https://dev.admin.avtoikonom.com',
 
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    /* Trace, screenshot and video are the three artifacts a failure needs to
+     * be debuggable without reproducing it locally — captured only on
+     * failure/retry so passing runs stay cheap. */
     trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+
+    actionTimeout: 15_000,
 
     /* Run headed locally so the browser is visible while watching a test;
      * always headless on CI where nothing watches it. */
