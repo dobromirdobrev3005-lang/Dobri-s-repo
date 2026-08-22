@@ -8,7 +8,24 @@ on:
   workflow_dispatch:
 
 jobs:
+  quality:
+    name: Lint & typecheck
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+      - run: npm ci
+      - run: npm run format:check
+      - run: npm run lint
+      - run: npm run typecheck
+
   test:
+    name: E2E tests
+    needs: quality
     timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
@@ -22,11 +39,20 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        id: pw-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
       - name: Install Playwright browsers
+        # Even on a cache hit, run with --with-deps: the OS package cache
+        # isn't restored by actions/cache, only the browser binaries are.
         run: npx playwright install --with-deps chromium
 
       - name: Run Playwright tests
-        run: npx playwright test
+        run: npm test
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
           ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
@@ -40,7 +66,7 @@ jobs:
           path: playwright-report/
           retention-days: 30
 
-      - name: Upload traces on failure
+      - name: Upload traces, screenshots & videos on failure
         uses: actions/upload-artifact@v4
         if: ${{ failure() }}
         with:
