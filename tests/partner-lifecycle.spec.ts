@@ -1,24 +1,24 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage';
-import { PartnersPage } from '../pages/PartnersPage';
 import { newPartnerFixture, updatedPartnerFixture } from './support/testData';
+import { createPartnerAndVerify, loginAndNavigateToPartners } from './support/flows';
 
 /**
- * End-to-end business workflow covering the Partner entity's lifecycle:
- * log in, navigate to Partners, create a new Partner with all required
- * fields, verify it was saved, then update every editable field on that
- * same Partner (including its name — the updated value is traceable via
- * an "EDITED" marker) and verify every change was actually persisted, not
- * just reflected optimistically in the UI.
+ * End-to-end business workflow covering the Partner entity's full
+ * lifecycle: log in, navigate to Partners, create a new Partner (via the
+ * same `createPartnerAndVerify` used by its own dedicated test — this
+ * flow *includes* that one rather than re-typing it), then update every
+ * editable field on that same Partner (including its name — the updated
+ * value is traceable via an "EDITED" marker) and verify every change was
+ * actually persisted, not just reflected optimistically in the UI.
  *
- * Kept as a single flow (not split into isolated tests) because each step
- * only makes sense in the context the previous one produced — "update the
- * Partner" and "verify the change persisted" are meaningless without the
- * Partner this run just created. The Partner updated here is always the
- * one this run created, never a pre-existing record: that keeps the test
- * hermetic (no dependency on — or risk to — data owned by other runs)
- * while still exercising a real "update an existing entity" path, since
- * by the time the update step runs, the Partner already exists.
+ * The update+verify half is kept in this same test, rather than split
+ * further, because it's only meaningful given the state creation already
+ * produced — "verify the update persisted" doesn't mean anything without
+ * the Partner this run just created. That Partner is always the one this
+ * run created, never a pre-existing record: that keeps the test hermetic
+ * (no dependency on — or risk to — data owned by other runs) while still
+ * exercising a real "update an existing entity" path, since by the time
+ * the update step runs, the Partner already exists.
  */
 test('creates a Partner, then updates every field and verifies each change was persisted', async ({
   page,
@@ -36,35 +36,8 @@ test('creates a Partner, then updates every field and verifies each change was p
   const partner = newPartnerFixture();
   const updated = updatedPartnerFixture(partner);
 
-  await test.step('Log in to the platform', async () => {
-    const loginPage = new LoginPage(page);
-    await loginPage.goto();
-    await loginPage.login(process.env.ADMIN_EMAIL!, process.env.ADMIN_PASSWORD!);
-    await page.waitForURL((url) => !url.pathname.endsWith('/login'));
-  });
-
-  const partnersPage = new PartnersPage(page);
-
-  await test.step('Navigate to the Partners section', async () => {
-    await partnersPage.goto();
-    await expect(page).toHaveURL(/\/partners$/);
-  });
-
-  await test.step('Create a new Partner and populate all required fields', async () => {
-    await partnersPage.openNewPartnerDialog();
-    await partnersPage.fillNewPartnerForm(partner);
-    await partnersPage.save();
-    await expect(partnersPage.dialog).toBeHidden();
-  });
-
-  await test.step('Validate the Partner was created successfully', async () => {
-    await partnersPage.searchByName(partner.name);
-    const row = partnersPage.row(partner.name);
-    await expect(row).toBeVisible();
-    await expect(row).toContainText(partner.phone);
-    await expect(row).toContainText(partner.contactPerson);
-    await expect(row).toContainText(partner.services[0]!);
-  });
+  const partnersPage = await loginAndNavigateToPartners(page);
+  await createPartnerAndVerify(partnersPage, partner);
 
   await test.step('Update every editable field on the Partner (lifecycle: edit an existing entity)', async () => {
     await partnersPage.openEditDialogFor(partner.name);

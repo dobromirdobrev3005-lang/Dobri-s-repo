@@ -10,6 +10,16 @@ export default tseslint.config(
   {
     files: ['tests/**/*.ts'],
     ...playwright.configs['flat/recommended'],
+    rules: {
+      ...playwright.configs['flat/recommended'].rules,
+      // Specs assert through shared step helpers in tests/support/flows.ts
+      // rather than inline `expect()` calls — teach the rule about them
+      // instead of silencing it.
+      'playwright/expect-expect': [
+        'warn',
+        { assertFunctionNames: ['createPartnerAndVerify', 'loginAndNavigateToPartners'] },
+      ],
+    },
   },
   {
     rules: {
