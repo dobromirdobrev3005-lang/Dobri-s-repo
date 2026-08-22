@@ -18,6 +18,7 @@
     "config/**/*.ts",
     "components/**/*.ts",
     "pages/**/*.ts",
+    "reporters/**/*.ts",
     "tests/**/*.ts"
   ]
 }

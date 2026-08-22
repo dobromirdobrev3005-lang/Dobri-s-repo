@@ -23,8 +23,22 @@ export default defineConfig({
    * and in the CI log); `html` is the artifact a human opens afterwards to
    * inspect a failure — traces, screenshots and network per step. Never
    * auto-opens: CI has no browser to open it in, and locally `npm run
-   * report` opens it on demand instead of surprising you every run. */
-  reporter: [['list'], ['html', { open: 'never' }]],
+   * report` opens it on demand instead of surprising you every run.
+   *
+   * `allure-playwright` writes raw results (`allure-results/`) rather than
+   * a report; `./reporters/allureReportLink.ts` renders those into
+   * `allure-report/` and prints a `file://` link to it once the run ends
+   * (skipped on CI — see that file's comment). Allure is kept alongside
+   * the built-in `html` reporter rather than replacing it: `html` is the
+   * zero-setup per-run report every test here already relies on, Allure is
+   * what a suite reaches for once trend/flake history across many runs
+   * (its actual advantage) starts mattering — see the README. */
+  reporter: [
+    ['list'],
+    ['html', { open: 'never' }],
+    ['allure-playwright'],
+    ['./reporters/allureReportLink.ts'],
+  ],
   /* Slow down assertions past the 5s default before failing a step, to
    * match the same genuinely slow environment. */
   expect: { timeout: 10_000 },
@@ -61,9 +75,15 @@ export default defineConfig({
      * spec.  */
     { name: 'setup', testMatch: /.*\.setup\.ts/ },
 
-    /* Run only against Chromium for now. */
+    /* Run only against Chromium (via `devices['Desktop Chrome']`) for now.
+     * Named for the suite, not the browser: this is the one project every
+     * spec actually runs under, and it's what shows up as the grouping
+     * label in the Allure/HTML reports and the `list` reporter's
+     * `[project] › ...` prefix — "avtoikonom_regression_suite" reads better
+     * there than a bare "chromium" once a second browser project (Firefox,
+     * WebKit) is ever added and "chromium" stops being the only one. */
     {
-      name: 'chromium',
+      name: 'avtoikonom_regression_suite',
       use: { ...devices['Desktop Chrome'], storageState: STORAGE_STATE_PATH },
       dependencies: ['setup'],
     },

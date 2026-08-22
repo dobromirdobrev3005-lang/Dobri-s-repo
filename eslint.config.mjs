@@ -35,7 +35,36 @@ export default tseslint.config(
     },
   },
   {
-    ignores: ['node_modules/', 'playwright-report/', 'test-results/', 'playwright/.cache/'],
+    // reporters/allureServer.js runs standalone via `node`, spawned
+    // directly rather than through Playwright/ts-node — plain CommonJS,
+    // so it needs Node's own runtime globals declared for `no-undef`
+    // (TypeScript files get these from @types/node instead; typescript-eslint
+    // turns base `no-undef` off for them entirely).
+    files: ['reporters/**/*.js'],
+    languageOptions: {
+      globals: {
+        require: 'readonly',
+        module: 'readonly',
+        process: 'readonly',
+        console: 'readonly',
+        __dirname: 'readonly',
+      },
+    },
+    rules: {
+      // Plain CommonJS by necessity (see the file's own comment) — `require`
+      // is correct here, not a leftover that should be an `import`.
+      '@typescript-eslint/no-require-imports': 'off',
+    },
+  },
+  {
+    ignores: [
+      'node_modules/',
+      'playwright-report/',
+      'test-results/',
+      'playwright/.cache/',
+      'allure-results/',
+      'allure-report/',
+    ],
   },
   prettier,
 );

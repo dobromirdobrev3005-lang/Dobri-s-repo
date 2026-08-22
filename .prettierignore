@@ -1,0 +1,6 @@
+# Generated reports — not source, and Allure's bundled assets aren't
+# meant to be reformatted anyway.
+playwright-report/
+test-results/
+allure-results/
+allure-report/

@@ -22,36 +22,40 @@ import { createPartnerAndVerify } from './support/flows';
  * exercising a real "update an existing entity" path, since by the time
  * the update step runs, the Partner already exists.
  */
-test('CreatePartnerAndUpdate', { tag: ['@regression', '@partners'] }, async ({ page, partnersPage }) => {
-  const partner = newPartnerFixture();
-  const updated = updatedPartnerFixture(partner);
+test(
+  'CreatePartnerWithRequiredFieldsPopulatedAndUpdate',
+  { tag: ['@regression', '@partners'] },
+  async ({ page, partnersPage }) => {
+    const partner = newPartnerFixture();
+    const updated = updatedPartnerFixture(partner);
 
-  await createPartnerAndVerify(partnersPage, partner);
+    await createPartnerAndVerify(partnersPage, partner);
 
-  await test.step('Update every editable field on the Partner (lifecycle: edit an existing entity)', async () => {
-    await partnersPage.openEditDialogFor(partner.name);
-    await partnersPage.fillNewPartnerForm(updated);
-    await partnersPage.save();
-    await expect(partnersPage.dialog).toBeHidden();
-  });
+    await test.step('Update every editable field on the Partner (lifecycle: edit an existing entity)', async () => {
+      await partnersPage.openEditDialogFor(partner.name);
+      await partnersPage.fillNewPartnerForm(updated);
+      await partnersPage.save();
+      await expect(partnersPage.dialog).toBeHidden();
+    });
 
-  await test.step('Validate every change was actually persisted (not just optimistic UI)', async () => {
-    // Force a fresh fetch from the backend instead of trusting in-memory UI
-    // state, which would pass even if the save silently failed.
-    await page.reload();
+    await test.step('Validate every change was actually persisted (not just optimistic UI)', async () => {
+      // Force a fresh fetch from the backend instead of trusting in-memory UI
+      // state, which would pass even if the save silently failed.
+      await page.reload();
 
-    await partnersPage.searchByName(updated.name);
-    const row = partnersPage.row(updated.name);
-    await expect(row).toBeVisible();
-    await expect(row).toContainText(updated.phone);
-    await expect(row).toContainText(updated.contactPerson);
-    await expect(row).toContainText(updated.services[0]!);
-    // The old service must be gone, not just the new one added alongside it.
-    await expect(row).not.toContainText(partner.services[0]!);
+      await partnersPage.searchByName(updated.name);
+      const row = partnersPage.row(updated.name);
+      await expect(row).toBeVisible();
+      await expect(row).toContainText(updated.phone);
+      await expect(row).toContainText(updated.contactPerson);
+      await expect(row).toContainText(updated.services[0]!);
+      // The old service must be gone, not just the new one added alongside it.
+      await expect(row).not.toContainText(partner.services[0]!);
 
-    // The table doesn't surface Type or Description — reopen the persisted
-    // record's own Edit form (itself freshly fetched) to confirm those too.
-    await partnersPage.openEditDialogFor(updated.name);
-    await partnersPage.expectFormMatches(updated);
-  });
-});
+      // The table doesn't surface Type or Description — reopen the persisted
+      // record's own Edit form (itself freshly fetched) to confirm those too.
+      await partnersPage.openEditDialogFor(updated.name);
+      await partnersPage.expectFormMatches(updated);
+    });
+  },
+);

@@ -30,6 +30,30 @@ export interface NewPartnerData {
  * placeholder text.
  */
 export class PartnersPage extends BasePage {
+  /**
+   * Every required-field validation message the "New partner"/"Edit
+   * partner" form shows when Save is clicked with required data missing —
+   * all nine appear together in one submit, so
+   * `expectRequiredFieldErrors()` asserts them as a set (see
+   * CreatePartnerValidation.spec.ts). Matched by their static English
+   * copy: there's no id/data-testid on the antd error node (it renders
+   * under a hashed CSS-module class — the thing this project's selector
+   * strategy otherwise avoids), and unlike the login button's label (see
+   * LoginPage), this copy isn't locale-dependent, so text is the least
+   * brittle option actually available here.
+   */
+  static readonly REQUIRED_FIELD_ERRORS = [
+    'Please write a name',
+    'Please enter a type!',
+    'Please enter services!',
+    'Please enter a subscription plan!',
+    'Please choose an address!',
+    'Please enter a phone number',
+    'Please enter a contact person!',
+    'Please enter a description!',
+    'Please enter a logo!',
+  ] as const;
+
   readonly newPartnerButton: Locator;
   readonly searchInput: Locator;
 
@@ -103,6 +127,13 @@ export class PartnersPage extends BasePage {
 
   async save(): Promise<void> {
     await this.activeDialog.getByRole('button', { name: 'Save', exact: true }).click();
+  }
+
+  /** Asserts every entry in REQUIRED_FIELD_ERRORS is currently shown in the open dialog. */
+  async expectRequiredFieldErrors(): Promise<void> {
+    for (const message of PartnersPage.REQUIRED_FIELD_ERRORS) {
+      await expect(this.activeDialog.getByText(message, { exact: true })).toBeVisible();
+    }
   }
 
   async searchByName(name: string): Promise<void> {
