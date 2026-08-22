@@ -10,7 +10,7 @@
         },
         {
           "name": "auth",
-          "value": "{\"user\":{\"uuid\":\"b2929a7a-2926-4337-8710-cba74938c05a\",\"email\":\"test_qa_ex@example.com\",\"region\":40000,\"role\":{\"id\":671,\"name\":\"region admin\",\"data\":{\"region\":40000,\"superuser\":true}},\"allRoles\":[{\"id\":671,\"name\":\"region admin\",\"data\":{\"region\":40000,\"superuser\":true}}]},\"accessToken\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYjI5MjlhN2EtMjkyNi00MzM3LTg3MTAtY2JhNzQ5MzhjMDVhIiwicm9sZSI6NjcxLCJpYXQiOjE3ODc0MTQwOTksImV4cCI6MTc4NzUwMDQ5OX0.FOrgDPuDlAVQ4aoH84ZR10Ku91koveD5lOrJhqdjYCk\",\"region\":40000}"
+          "value": "{\"user\":{\"uuid\":\"b2929a7a-2926-4337-8710-cba74938c05a\",\"email\":\"test_qa_ex@example.com\",\"region\":40000,\"role\":{\"id\":671,\"name\":\"region admin\",\"data\":{\"region\":40000,\"superuser\":true}},\"allRoles\":[{\"id\":671,\"name\":\"region admin\",\"data\":{\"region\":40000,\"superuser\":true}}]},\"accessToken\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYjI5MjlhN2EtMjkyNi00MzM3LTg3MTAtY2JhNzQ5MzhjMDVhIiwicm9sZSI6NjcxLCJpYXQiOjE3ODc0MTk2MDgsImV4cCI6MTc4NzUwNjAwOH0.xN4qMT5_aj0pCCkPeljcWRKtLBqixxtaUQIDm0JT1FM\",\"region\":40000}"
         }
       ]
     }
