@@ -9,11 +9,11 @@ import { createPartnerAndVerify } from './support/flows';
  * not as steps here — that's this project's `@BeforeMethod` equivalent.
  *
  * Kept as its own test (separate from the full lifecycle in
- * `partner-lifecycle.spec.ts`) so "does create work" has a fast, focused
- * signal of its own — it fails and reports independently of the update
- * path, and can run/re-run on its own.
+ * `CreatePartnerAndUpdate.spec.ts`) so "does create work" has a fast,
+ * focused signal of its own — it fails and reports independently of the
+ * update path, and can run/re-run on its own.
  */
-test('createPartnerAndVerify', async ({ partnersPage }) => {
+test('CreatePartner', async ({ partnersPage }) => {
   const partner = newPartnerFixture();
   await createPartnerAndVerify(partnersPage, partner);
 });

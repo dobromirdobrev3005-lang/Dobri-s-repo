@@ -11,12 +11,12 @@ Two tests, both driving the `partnersPage` fixture — this project's
 `@BeforeMethod` equivalent, see [below](#architectural-decisions) — which logs
 in and lands on the Partners section before either one's body runs:
 
-- **`createPartnerAndVerify`** (`tests/createPartnerAndVerify.spec.ts`) —
-  create a new Partner with every required field populated → validate it was
-  created successfully. A fast, focused signal on its own: if Partner
-  creation breaks, this is the one that goes red.
-- **Partner lifecycle** (`tests/partner-lifecycle.spec.ts`) — the full
-  journey: everything `createPartnerAndVerify` does (it calls the exact same
+- **`CreatePartner`** (`tests/CreatePartner.spec.ts`) — create a new Partner
+  with every required field populated → validate it was created
+  successfully. A fast, focused signal on its own: if Partner creation
+  breaks, this is the one that goes red.
+- **`CreatePartnerAndUpdate`** (`tests/CreatePartnerAndUpdate.spec.ts`) — the
+  full journey: everything `CreatePartner` does (it calls the exact same
   shared step, not a re-typed copy — see `tests/support/flows.ts`), then
   updates **every** editable field on that same Partner (name included,
   marked `EDITED` so it's traceable in the UI), reloads to force a fresh
@@ -76,8 +76,8 @@ pages/                  Page Objects — one per screen/section
   LoginPage.ts
   PartnersPage.ts
 tests/
-  createPartnerAndVerify.spec.ts
-  partner-lifecycle.spec.ts
+  CreatePartner.spec.ts
+  CreatePartnerAndUpdate.spec.ts
   support/
     fixtures.ts           the `partnersPage` fixture — login + navigate, shared setup
     flows.ts               shared, test.step-wrapped steps reused across specs
@@ -152,7 +152,7 @@ generates a unique Partner name/phone/contact per run
 (`QA E2E Partner <timestamp>-<random>`), so parallel or repeated runs never
 collide and never depend on another run's leftover data. The Partner the
 lifecycle test updates is always the one it just created — see the comment
-in `partner-lifecycle.spec.ts` for the reasoning (an update that landed on an
+in `CreatePartnerAndUpdate.spec.ts` for the reasoning (an update that landed on an
 arbitrary pre-existing record would be non-deterministic and could corrupt
 data other runs rely on).
 
@@ -188,7 +188,7 @@ points at the exact step, not just "the test failed".
 
 **Code quality tooling.** TypeScript `strict` (plus
 `noUncheckedIndexedAccess`, which caught a real possible-`undefined` array
-access during setup — see `tests/partner-lifecycle.spec.ts`), ESLint
+access during setup — see `tests/CreatePartnerAndUpdate.spec.ts`), ESLint
 (`typescript-eslint` + `eslint-plugin-playwright` for automation-specific
 rules like flagging conditional logic in tests) and Prettier. All three run
 as their own fast CI job (`quality`) that gates the — much slower — `test`

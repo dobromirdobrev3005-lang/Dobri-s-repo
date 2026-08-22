@@ -8,7 +8,7 @@ import { PartnersPage } from '../../pages/PartnersPage';
  * test a ready-to-use resource. Unlike a plain `test.beforeEach()` (which
  * would have to be repeated in every spec file), this is defined once and
  * shared by importing this `test` instead of `@playwright/test`'s — both
- * `createPartnerAndVerify.spec.ts` and `partner-lifecycle.spec.ts` do.
+ * `CreatePartner.spec.ts` and `CreatePartnerAndUpdate.spec.ts` do.
  *
  * Login is intentionally *only* exercised this way, not as its own test:
  * if it breaks, every test that depends on it fails loudly and immediately

@@ -22,10 +22,7 @@ import { createPartnerAndVerify } from './support/flows';
  * exercising a real "update an existing entity" path, since by the time
  * the update step runs, the Partner already exists.
  */
-test('creates a Partner, then updates every field and verifies each change was persisted', async ({
-  page,
-  partnersPage,
-}) => {
+test('CreatePartnerAndUpdate', async ({ page, partnersPage }) => {
   const partner = newPartnerFixture();
   const updated = updatedPartnerFixture(partner);
 

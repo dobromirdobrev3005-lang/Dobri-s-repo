@@ -2,8 +2,8 @@ import { expect, test } from './fixtures';
 import { NewPartnerData, PartnersPage } from '../../pages/PartnersPage';
 
 /**
- * Shared step reused by `createPartnerAndVerify.spec.ts` and
- * `partner-lifecycle.spec.ts`, so the lifecycle test's create+verify half
+ * Shared step reused by `CreatePartner.spec.ts` and
+ * `CreatePartnerAndUpdate.spec.ts`, so the lifecycle test's create+verify half
  * literally *is* the standalone test's body, not a re-typed copy of it.
  * Wrapped in `test.step()` so both call sites keep the same readable,
  * per-phase breakdown in the console and HTML report.
