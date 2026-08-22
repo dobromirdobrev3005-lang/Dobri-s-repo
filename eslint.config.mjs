@@ -12,13 +12,21 @@ export default tseslint.config(
     ...playwright.configs['flat/recommended'],
     rules: {
       ...playwright.configs['flat/recommended'].rules,
-      // Specs assert through shared step helpers in tests/support/flows.ts
+      // Specs assert through shared step helpers in tests/*/support/flows.ts
       // rather than inline `expect()` calls — teach the rule about them
       // instead of silencing it.
-      'playwright/expect-expect': [
-        'warn',
-        { assertFunctionNames: ['createPartnerAndVerify', 'loginAndNavigateToPartners'] },
-      ],
+      'playwright/expect-expect': ['warn', { assertFunctionNames: ['createPartnerAndVerify'] }],
+    },
+  },
+  {
+    // Setup projects (tests/setup/*.setup.ts) establish prerequisite state
+    // (here: an authenticated session) rather than assert application
+    // behavior — the usual "a test should assert something" and "avoid
+    // conditionals in a test" rules don't apply to that kind of file.
+    files: ['tests/**/*.setup.ts'],
+    rules: {
+      'playwright/expect-expect': 'off',
+      'playwright/no-conditional-in-test': 'off',
     },
   },
   {

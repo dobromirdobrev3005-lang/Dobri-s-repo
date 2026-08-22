@@ -9,9 +9,9 @@ import { createPartnerAndVerify } from './support/flows';
  * than re-typing it), then update every editable field on that same
  * Partner (including its name — the updated value is traceable via an
  * "EDITED" marker) and verify every change was actually persisted, not
- * just reflected optimistically in the UI. Login + navigation to Partners
- * happen in the `partnersPage` fixture (see `tests/support/fixtures.ts`),
- * not as steps here — that's this project's `@BeforeMethod` equivalent.
+ * just reflected optimistically in the UI. Authentication + navigation to
+ * Partners happen outside this test — see the comment in
+ * `CreatePartner.spec.ts` for how.
  *
  * The update+verify half is kept in this same test, rather than split
  * further, because it's only meaningful given the state creation already
@@ -22,7 +22,7 @@ import { createPartnerAndVerify } from './support/flows';
  * exercising a real "update an existing entity" path, since by the time
  * the update step runs, the Partner already exists.
  */
-test('CreatePartnerAndUpdate', async ({ page, partnersPage }) => {
+test('CreatePartnerAndUpdate', { tag: ['@regression', '@partners'] }, async ({ page, partnersPage }) => {
   const partner = newPartnerFixture();
   const updated = updatedPartnerFixture(partner);
 

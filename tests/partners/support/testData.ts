@@ -1,5 +1,5 @@
 import path from 'path';
-import { NewPartnerData } from '../../pages/PartnersPage';
+import { NewPartnerData } from '../../../pages/partners/PartnersPage';
 
 /** Generates a unique, self-describing Partner name so parallel/repeat runs never collide. */
 export function uniquePartnerName(prefix = 'QA E2E Partner'): string {
@@ -18,7 +18,7 @@ export function newPartnerFixture(): NewPartnerData {
     phone: `88${Math.floor(1000000 + Math.random() * 8999999)}`,
     contactPerson: `QA Contact ${name}`,
     description: 'Created by an automated E2E test.',
-    logoPath: path.resolve(__dirname, '..', 'fixtures', 'logo.png'),
+    logoPath: path.resolve(__dirname, '..', 'assets', 'logo.png'),
     hideInMobileApp: false,
   };
 }
@@ -38,7 +38,7 @@ export function updatedPartnerFixture(original: NewPartnerData): NewPartnerData 
     phone: `89${Math.floor(1000000 + Math.random() * 8999999)}`,
     contactPerson: `QA Contact EDITED ${uniquePartnerName('')}`.trim(),
     description: `EDITED — updated by an automated E2E test at ${new Date().toISOString()}.`,
-    logoPath: path.resolve(__dirname, '..', 'fixtures', 'logo-edited.png'),
+    logoPath: path.resolve(__dirname, '..', 'assets', 'logo-edited.png'),
     hideInMobileApp: true,
   };
 }
