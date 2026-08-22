@@ -1,8 +1,7 @@
 # Node
 node_modules/
 
-# Environment variables (never commit real credentials)
-.env
+# Environment variables
 .env.local
 
 # Playwright
