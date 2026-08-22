@@ -1,6 +1,5 @@
 import { test, expect } from './support/fixtures';
 import { env } from '../../config/env';
-
 /**
  * Negative / validation coverage for the `/login` form itself — a domain
  * of its own (`tests/auth/`), same shape as `tests/partners/`, rather than
