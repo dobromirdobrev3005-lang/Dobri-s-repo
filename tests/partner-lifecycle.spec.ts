@@ -1,15 +1,17 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from './support/fixtures';
 import { newPartnerFixture, updatedPartnerFixture } from './support/testData';
-import { createPartnerAndVerify, loginAndNavigateToPartners } from './support/flows';
+import { createPartnerAndVerify } from './support/flows';
 
 /**
  * End-to-end business workflow covering the Partner entity's full
- * lifecycle: log in, navigate to Partners, create a new Partner (via the
- * same `createPartnerAndVerify` used by its own dedicated test — this
- * flow *includes* that one rather than re-typing it), then update every
- * editable field on that same Partner (including its name — the updated
- * value is traceable via an "EDITED" marker) and verify every change was
- * actually persisted, not just reflected optimistically in the UI.
+ * lifecycle: create a new Partner (via the same `createPartnerAndVerify`
+ * used by its own dedicated test — this flow *includes* that one rather
+ * than re-typing it), then update every editable field on that same
+ * Partner (including its name — the updated value is traceable via an
+ * "EDITED" marker) and verify every change was actually persisted, not
+ * just reflected optimistically in the UI. Login + navigation to Partners
+ * happen in the `partnersPage` fixture (see `tests/support/fixtures.ts`),
+ * not as steps here — that's this project's `@BeforeMethod` equivalent.
  *
  * The update+verify half is kept in this same test, rather than split
  * further, because it's only meaningful given the state creation already
@@ -22,21 +24,11 @@ import { createPartnerAndVerify, loginAndNavigateToPartners } from './support/fl
  */
 test('creates a Partner, then updates every field and verifies each change was persisted', async ({
   page,
+  partnersPage,
 }) => {
-  // Conditional skip on missing local/CI secrets, not a disabled test.
-  // eslint-disable-next-line playwright/no-skipped-test
-  test.skip(
-    !process.env.ADMIN_EMAIL || !process.env.ADMIN_PASSWORD,
-    'ADMIN_EMAIL / ADMIN_PASSWORD are not set (see .env.example)',
-  );
-  // The dialog loads a Google Map and a subscription-tier list, both slow
-  // in this environment — give the flow more headroom than the 30s default.
-  test.setTimeout(120_000);
-
   const partner = newPartnerFixture();
   const updated = updatedPartnerFixture(partner);
 
-  const partnersPage = await loginAndNavigateToPartners(page);
   await createPartnerAndVerify(partnersPage, partner);
 
   await test.step('Update every editable field on the Partner (lifecycle: edit an existing entity)', async () => {

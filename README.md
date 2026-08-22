@@ -7,12 +7,14 @@ grow inside a production repo.
 
 ## What's here
 
-- **Login** (`tests/login.spec.ts`) — the page loads and renders the sign-in
-  form; a valid login redirects into the app and shows the right account.
-- **`createPartnerAndVerify`** (`tests/createPartnerAndVerify.spec.ts`) — log
-  in → navigate to Partners → create a new Partner with every required field
-  populated → validate it was created successfully. A fast, focused signal
-  on its own: if Partner creation breaks, this is the one that goes red.
+Two tests, both driving the `partnersPage` fixture — this project's
+`@BeforeMethod` equivalent, see [below](#architectural-decisions) — which logs
+in and lands on the Partners section before either one's body runs:
+
+- **`createPartnerAndVerify`** (`tests/createPartnerAndVerify.spec.ts`) —
+  create a new Partner with every required field populated → validate it was
+  created successfully. A fast, focused signal on its own: if Partner
+  creation breaks, this is the one that goes red.
 - **Partner lifecycle** (`tests/partner-lifecycle.spec.ts`) — the full
   journey: everything `createPartnerAndVerify` does (it calls the exact same
   shared step, not a re-typed copy — see `tests/support/flows.ts`), then
@@ -25,7 +27,8 @@ The update half stays inside the lifecycle test rather than becoming a third
 standalone test, because "verify the update persisted" is only meaningful
 given the Partner creation already produced in that same run — an update
 test can't stand on its own without first creating (or being handed) a
-Partner to update.
+Partner to update. Login isn't a third test either, for the same shape of
+reason: see the fixture note below.
 
 ## Install & run
 
@@ -50,9 +53,9 @@ npm run lint           # eslint . (also: lint:fix)
 npm run format          # prettier --write . (also: format:check)
 ```
 
-Without `ADMIN_EMAIL`/`ADMIN_PASSWORD` set, every credentialed test **skips**
-itself (with a clear reason in the report) instead of failing — the
-login-page-renders test still runs, since it needs no credentials.
+Without `ADMIN_EMAIL`/`ADMIN_PASSWORD` set, both tests **skip** themselves
+(with a clear reason in the report) instead of failing or hanging — the
+`partnersPage` fixture checks before attempting to log in.
 
 ### Environment configuration
 
@@ -73,12 +76,12 @@ pages/                  Page Objects — one per screen/section
   LoginPage.ts
   PartnersPage.ts
 tests/
-  login.spec.ts
   createPartnerAndVerify.spec.ts
   partner-lifecycle.spec.ts
   support/
-    testData.ts          fixture builders (unique, self-describing test data)
-    flows.ts              shared, test.step-wrapped steps reused across specs
+    fixtures.ts           the `partnersPage` fixture — login + navigate, shared setup
+    flows.ts               shared, test.step-wrapped steps reused across specs
+    testData.ts             fixture (data) builders — unique, self-describing test data
   fixtures/
     logo.png, logo-edited.png
 .github/workflows/
@@ -106,9 +109,23 @@ spec. `PartnersPage` deliberately reuses `fillNewPartnerForm()` for both
 create and full-field update, since the app itself reuses the same dialog
 component for both — one place to fix if that form changes.
 
-**Shared flow steps, not copy-pasted specs.** `createPartnerAndVerify.spec.ts`
-and `partner-lifecycle.spec.ts` both need "log in, navigate to Partners,
-create a Partner, verify it" — that step lives once, in
+**A fixture as this project's `@BeforeMethod`.** Both specs need "log in,
+land on Partners" before their body runs — the kind of thing a JUnit/TestNG
+suite would put in a `@BeforeMethod`. Playwright's idiomatic equivalent is a
+**fixture**, not a hand-rolled `test.beforeEach()`: `tests/support/fixtures.ts`
+exports a `partnersPage` fixture that logs in, navigates, and hands the test
+a ready-to-use `PartnersPage` — importing this file's `test` instead of
+`@playwright/test`'s is the only thing either spec has to do to get it. A
+fixture beats a per-file `beforeEach` here for the same reason dependency
+injection beats a copy-pasted setup method: it's defined once and _shared_ by
+import, it composes (it can itself depend on other fixtures), and unlike a
+`@Test`-annotated login test, a broken login now fails **every** test that
+needs it, immediately, at the "Log in to the platform" step — which is a
+strictly stronger signal than one isolated login test going red on its own
+while everything downstream keeps limping along on a stale session.
+
+**Shared flow steps, not copy-pasted specs.** Beyond login, both specs also
+share "create a Partner, verify it" — that step lives once, in
 `tests/support/flows.ts`, and both specs call it. The lifecycle test's first
 half _is_ the standalone create test's body, not a re-typed copy that could
 drift out of sync with it over time.
@@ -217,11 +234,13 @@ Playwright run.
 - **Visual/byte-level assertion for the Logo field**, e.g. comparing the
   uploaded file's hash against what the persisted `<img src>` resolves to,
   to close the one field the current suite exercises but doesn't verify.
-- **Auth via API, not UI, for setup.** Logging in through the UI on every
-  test is realistic for the one test that verifies login itself, but is dead
-  weight to repeat before every other test as the suite grows. I'd add a
-  Playwright `storageState` fixture that logs in once and reuses the session,
-  and keep the from-scratch UI login only in `login.spec.ts`.
+- **Cache the logged-in session instead of re-doing UI login per test.** The
+  `partnersPage` fixture already centralizes login into one shared place;
+  the next step is a `storageState`-based fixture that authenticates once
+  (via the UI, once, or via an API login call if the app exposes one) and
+  reuses that session across tests, instead of driving the login form on
+  every single run. Worth doing once the suite has enough tests that login
+  time actually adds up — for two tests it isn't the bottleneck yet.
 - **Cross-browser/device matrix** (Firefox, WebKit, a mobile viewport) —
   scoped to Chromium only here since the whole exercise runs against one
   real, slow environment and breadth wasn't the goal.
