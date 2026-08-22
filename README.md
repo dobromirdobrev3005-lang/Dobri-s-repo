@@ -9,17 +9,23 @@ grow inside a production repo.
 
 - **Login** (`tests/login.spec.ts`) — the page loads and renders the sign-in
   form; a valid login redirects into the app and shows the right account.
-- **Partner lifecycle** (`tests/partner-lifecycle.spec.ts`) — the main flow:
-  log in → navigate to Partners → create a new Partner with every required
-  field populated → verify it was saved → update **every** editable field on
-  that same Partner (name included, marked `EDITED` so it's traceable in the
-  UI) → reload and re-fetch from the backend → verify every change actually
-  persisted, field by field.
+- **`createPartnerAndVerify`** (`tests/createPartnerAndVerify.spec.ts`) — log
+  in → navigate to Partners → create a new Partner with every required field
+  populated → validate it was created successfully. A fast, focused signal
+  on its own: if Partner creation breaks, this is the one that goes red.
+- **Partner lifecycle** (`tests/partner-lifecycle.spec.ts`) — the full
+  journey: everything `createPartnerAndVerify` does (it calls the exact same
+  shared step, not a re-typed copy — see `tests/support/flows.ts`), then
+  updates **every** editable field on that same Partner (name included,
+  marked `EDITED` so it's traceable in the UI), reloads to force a fresh
+  backend fetch, and verifies every change actually persisted, field by
+  field.
 
-The lifecycle test is written as one continuous flow rather than split into
-isolated tests, because each step is only meaningful given the state the
-previous one produced — "verify the update persisted" doesn't mean anything
-without the Partner this same run just created and edited.
+The update half stays inside the lifecycle test rather than becoming a third
+standalone test, because "verify the update persisted" is only meaningful
+given the Partner creation already produced in that same run — an update
+test can't stand on its own without first creating (or being handed) a
+Partner to update.
 
 ## Install & run
 
@@ -44,10 +50,9 @@ npm run lint           # eslint . (also: lint:fix)
 npm run format          # prettier --write . (also: format:check)
 ```
 
-Without `ADMIN_EMAIL`/`ADMIN_PASSWORD` set, the login-success and
-partner-lifecycle tests **skip** themselves (with a clear reason in the
-report) instead of failing — the login-page-renders test still runs, since it
-needs no credentials.
+Without `ADMIN_EMAIL`/`ADMIN_PASSWORD` set, every credentialed test **skips**
+itself (with a clear reason in the report) instead of failing — the
+login-page-renders test still runs, since it needs no credentials.
 
 ### Environment configuration
 
@@ -69,9 +74,11 @@ pages/                  Page Objects — one per screen/section
   PartnersPage.ts
 tests/
   login.spec.ts
+  createPartnerAndVerify.spec.ts
   partner-lifecycle.spec.ts
   support/
     testData.ts          fixture builders (unique, self-describing test data)
+    flows.ts              shared, test.step-wrapped steps reused across specs
   fixtures/
     logo.png, logo-edited.png
 .github/workflows/
@@ -98,6 +105,13 @@ so a selector change is a one-line fix in one file, not a hunt through every
 spec. `PartnersPage` deliberately reuses `fillNewPartnerForm()` for both
 create and full-field update, since the app itself reuses the same dialog
 component for both — one place to fix if that form changes.
+
+**Shared flow steps, not copy-pasted specs.** `createPartnerAndVerify.spec.ts`
+and `partner-lifecycle.spec.ts` both need "log in, navigate to Partners,
+create a Partner, verify it" — that step lives once, in
+`tests/support/flows.ts`, and both specs call it. The lifecycle test's first
+half _is_ the standalone create test's body, not a re-typed copy that could
+drift out of sync with it over time.
 
 **Selector strategy, in priority order:** stable `id` attributes (this app
 happens to expose good ones: `name-field`, `partner-type-field`, ...) →
