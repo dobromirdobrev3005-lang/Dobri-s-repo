@@ -15,7 +15,7 @@ import { createPartnerAndVerify } from './support/flows';
  * focused signal of its own — it fails and reports independently of the
  * update path, and can run/re-run on its own.
  */
-test('CreatePartner', { tag: ['@smoke', '@partners'] }, async ({ partnersPage }) => {
+test('CreatePartner', { tag: ['@smoke', '@regression', '@partners'] }, async ({ partnersPage }) => {
   const partner = newPartnerFixture();
   await createPartnerAndVerify(partnersPage, partner);
 });

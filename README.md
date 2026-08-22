@@ -11,9 +11,9 @@ see [Scaling this project](#scaling-this-project) for the reasoning.
 Two tests, both against the Partners domain:
 
 - **`CreatePartner`** (`tests/partners/CreatePartner.spec.ts`, tagged
-  `@smoke`) — create a new Partner with every required field populated →
-  validate it was created successfully. A fast, focused signal on its own:
-  if Partner creation breaks, this is the one that goes red.
+  `@smoke` `@regression`) — create a new Partner with every required field
+  populated → validate it was created successfully. A fast, focused signal
+  on its own: if Partner creation breaks, this is the one that goes red.
 - **`CreatePartnerAndUpdate`** (`tests/partners/CreatePartnerAndUpdate.spec.ts`,
   tagged `@regression`) — the full journey: everything `CreatePartner` does
   (it calls the exact same shared step, not a re-typed copy — see
@@ -194,13 +194,15 @@ which is the correct outcome for a broken prerequisite.
 ### Tagging: `@smoke` / `@regression`, per domain
 
 Both tests carry Playwright's native tag annotation —
-`test('CreatePartner', { tag: ['@smoke', '@partners'] }, ...)` — so subsets
-can run independently: `npm run test:smoke` for the fast, must-pass-on-every-PR
-set, `npm run test:regression` for the fuller picture, `--grep @partners`
-for "just this domain" once there's more than one. At 1000 tests, running
-everything on every PR isn't viable; a tag vocabulary established from test
-one means the CI split (fast subset on PR, full suite nightly) is a
-`--grep` flag away, not a retrofit.
+`test('CreatePartner', { tag: ['@smoke', '@regression', '@partners'] }, ...)` —
+so subsets can run independently: `npm run test:smoke` for the fast,
+must-pass-on-every-PR set (`CreatePartner` only), `npm run test:regression`
+for the fuller picture (`@regression` is a superset — every `@smoke` test
+is also tagged `@regression`, so the full suite always includes the fast
+one), `--grep @partners` for "just this domain" once there's more than one.
+At 1000 tests, running everything on every PR isn't viable; a tag
+vocabulary established from test one means the CI split (fast subset on
+PR, full suite nightly) is a `--grep` flag away, not a retrofit.
 
 **Selector strategy, in priority order:** stable `id` attributes (this app
 happens to expose good ones: `name-field`, `partner-type-field`, ...) →
