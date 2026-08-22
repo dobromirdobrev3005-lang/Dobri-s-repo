@@ -20,7 +20,11 @@ import { newPartnerFixture, updatedPartnerFixture } from './support/testData';
  * while still exercising a real "update an existing entity" path, since
  * by the time the update step runs, the Partner already exists.
  */
-test('creates a Partner, then updates every field and verifies each change was persisted', async ({ page }) => {
+test('creates a Partner, then updates every field and verifies each change was persisted', async ({
+  page,
+}) => {
+  // Conditional skip on missing local/CI secrets, not a disabled test.
+  // eslint-disable-next-line playwright/no-skipped-test
   test.skip(
     !process.env.ADMIN_EMAIL || !process.env.ADMIN_PASSWORD,
     'ADMIN_EMAIL / ADMIN_PASSWORD are not set (see .env.example)',
@@ -59,7 +63,7 @@ test('creates a Partner, then updates every field and verifies each change was p
     await expect(row).toBeVisible();
     await expect(row).toContainText(partner.phone);
     await expect(row).toContainText(partner.contactPerson);
-    await expect(row).toContainText(partner.services[0]);
+    await expect(row).toContainText(partner.services[0]!);
   });
 
   await test.step('Update every editable field on the Partner (lifecycle: edit an existing entity)', async () => {
@@ -79,9 +83,9 @@ test('creates a Partner, then updates every field and verifies each change was p
     await expect(row).toBeVisible();
     await expect(row).toContainText(updated.phone);
     await expect(row).toContainText(updated.contactPerson);
-    await expect(row).toContainText(updated.services[0]);
+    await expect(row).toContainText(updated.services[0]!);
     // The old service must be gone, not just the new one added alongside it.
-    await expect(row).not.toContainText(partner.services[0]);
+    await expect(row).not.toContainText(partner.services[0]!);
 
     // The table doesn't surface Type or Description — reopen the persisted
     // record's own Edit form (itself freshly fetched) to confirm those too.

@@ -14,6 +14,8 @@ test.describe('Login page', () => {
   });
 
   test('logs in with valid credentials and reaches the dashboard', async ({ page }) => {
+    // Conditional skip on missing local/CI secrets, not a disabled test.
+    // eslint-disable-next-line playwright/no-skipped-test
     test.skip(
       !process.env.ADMIN_EMAIL || !process.env.ADMIN_PASSWORD,
       'ADMIN_EMAIL / ADMIN_PASSWORD are not set (see .env.example)',
